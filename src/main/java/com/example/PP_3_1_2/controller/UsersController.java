@@ -29,12 +29,12 @@ public class UsersController {
     }
 
     @GetMapping("/adduser")
-    public String newPerson(Model model) {
+    public String newUser(Model model) {
         model.addAttribute("user", new User());
         return "adduser";
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public String create(@ModelAttribute("user") User user) {
         userService.createUser(user);
         return "redirect:/";
@@ -47,7 +47,7 @@ public class UsersController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") User user, @PathVariable("id") Long id) {
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.updateUser(user);
         return "redirect:/";
     }
