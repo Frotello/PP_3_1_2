@@ -21,7 +21,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void createUser(User user) {
         entityManager.persist(user);
-        entityManager.flush();
     }
 
     @Override
@@ -35,12 +34,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User deleteUser(Long id) {
+    public void deleteUser(Long id) {
         User user = readUser(id);
-        if (null == user) {
-            throw new NullPointerException("User not found");
-        }
         entityManager.remove(user);
-        return user;
     }
 }

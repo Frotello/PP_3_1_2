@@ -17,11 +17,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void createUser(User user) {
         userDao.createUser(user);
     }
 
     @Override
+    @Transactional
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
@@ -37,13 +39,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User deleteUser(Long id) {
-        User user = null;
-        try {
-            user = userDao.deleteUser(id);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return user;
+    @Transactional
+    public void deleteUser(Long id) {
+        userDao.deleteUser(id);
     }
 }
